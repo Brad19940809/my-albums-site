@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}欢迎来到唱片库{% endblock %}</title>
+    {% load staticfiles %}
+       <link rel="shortcut icon" type="image/png" href="{% static 'lib/../../static/images/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+{#    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/css/style.css' %}"/>
+    <script src="{% static 'jquery/jquery-1.12.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'lib/js/main.js' %}"></script>
+</head>
+
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'music:index' %}">首页</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block register_active %}{% endblock %}"><a href="{% url 'music:register' %}">注册</a></li>
+                <li class="{% block login_active %}{% endblock %}"><a href="{% url 'music:login_user' %}">登录</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ language.base.title }}{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'lib/../../static/images/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    {#    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/css/style.css' %}"/>
+    <script src="{% static 'jquery/jquery-1.12.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/js/main.js' %}"></script>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <!-- Header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'music:index' %}">{{ language.base.home }}</a>
+            </div>
+
+            <!-- Items -->
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'music:index' %}"><span class="glyphicon glyphicon-cd"
+                                                                                                                aria-hidden="true"></span>&nbsp; {{ language.base.albums }}
+                    </a></li>
+                    <li class="{% block songs_active %}{% endblock %}"><a href="{% url 'music:songs' 'all' %}"><span class="glyphicon glyphicon-music"
+                                                                                                                     aria-hidden="true"></span>&nbsp; {{ language.base.songs }}</a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'music:index' %}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                    </div>
+                    <button type="submit" class="btn btn-default">{{ language.base.search }}</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{% url 'music:create_album' %}">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; {{ language.base.add_album }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'music:logout_user' %}">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; {{ language.base.logout }}
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+                                {{ language.language.title }}<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="{% url 'music:language' 'zh' %}">{{ language.language.list1 }}</a></li>
+                                <li><a href="{% url 'music:language' 'en' %}">{{ language.language.list2 }}</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="center-block" src="{% static 'images/carousel/album1.jpg' %}" alt="First slide">
+        </div>
+        <div class="item">
+            <img class="center-block" src="{% static 'images/carousel/Elvis.jpg' %}" alt="Second slide">
+        </div>
+        <div class="item">
+            <img class="center-block" src="{% static 'images/carousel/Madonna.jpg' %}" alt="Third slide">
+        </div>
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="carousel-control left" href="#myCarousel"
+       data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel"
+       data-slide="next">&rsaquo;</a>
+</div>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>
