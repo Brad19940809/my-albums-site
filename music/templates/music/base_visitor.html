@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <title>{% block title %}欢迎来到唱片库{% endblock %}</title>
     {% load staticfiles %}
-       <link rel="shortcut icon" type="image/png" href="{% static 'lib/../../static/images/favicon.ico' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'lib/../../static/images/favicon.ico' %}"/>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-{#    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>#}
+    {#    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>#}
     <link rel="stylesheet" type="text/css" href="{% static 'lib/css/style.css' %}"/>
     <script src="{% static 'jquery/jquery-1.12.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'lib/js/main.js' %}"></script>
+
+    {% block script_and_css %}{% endblock %}
+
 </head>
 
 

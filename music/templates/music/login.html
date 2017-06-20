@@ -1,52 +1,74 @@
 {% extends 'music/base_visitor.html' %}
 {% block title %}登录我的唱片库{% endblock %}
+
+{% load staticfiles %}
+{% block script_and_css %}
+    <script src="{% static 'lib/js/login.js' %}"></script>
+{% endblock %}
+
+
 {% block login_active %}active{% endblock %}
 
-{% block body %}
-<div class="container-fluid">
 
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Log In</h3>
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form class="form-horizontal" role="form" action="{% url 'music:login_user'%}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="id_username">
-                                用户名:
-                            </label>
-                            <div class="col-sm-10">
-                                <input id="id_username" maxlength="30" name="username" value="手机号/邮箱" type="text">
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Log In</h3>
+                        {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
+                        <form class="form-horizontal" role="form" action="{% url 'music:login_user' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="id_username">
+                                    用户名:
+                                </label>
+                                <div class="col-sm-10">
+                                    <input id="id_username" maxlength="30" name="username" value="手机号/邮箱" type="text">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="id_password">
-                                密码:
-                            </label>
-                            <div class="col-sm-10">
-                                <input id="id_password" maxlength="30" name="password" type="password">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="id_password">
+                                    密码:
+                                </label>
+                                <div class="col-sm-10">
+                                    <input id="id_password" maxlength="30" name="password" type="password">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">登录</button>
-                                <center><span><a>忘记密码？</a></span></center>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">登录</button>
+                                    <center><span><a>忘记密码？</a></span></center>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
+                    <div class="panel-footer">
+                        还没有账号? <a href="{% url 'music:register' %}">点击</a>去注册.
+                    </div>
                 </div>
-                <div class="panel-footer">
-                    还没有账号? <a href="{% url 'music:register' %}">点击</a>去注册.
+                <br>
+                <br>
+                <br>
+                <div class="dd">
+                    <button class="btn btn-group" id="get-captcha" onclick="xx()">
+                        获取图片验证码:
+                    </button>
+                    <img src="" id="img1">
+                    <div class="col-sm-10">
+                        <input id="id_password" maxlength="30" name="password" type="password">
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 {% endblock %}
 
